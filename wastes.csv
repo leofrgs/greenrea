@@ -4,4 +4,4 @@ compress,Compresses souillées,compresse;compresses;pansement souillé,Déchets 
 glove,Gants à usage unique (non souillés),gants;gant,Selon protocole local. Si souillés biologiquement → DASRI.,noir_omb
 incubation_probe,Sonde d’incubation,sonde incubation;probe incubateur;sonde,Vérifier si réutilisable/équipement biomédical. Suivre procédure interne.,dasri_jaune
 meds,Médicaments périmés (non cytotoxiques),médicament;medicament;pharma,Retour pharmacie / filière médicamenteuse.,bleu_pharma
-cyto,Cytotoxiques/cytostatiques,chimio;cytotoxique;cytostatique,Filière dangereuse spécifique (protocoles dédiés).,rouge_cyto
+cyto,Cytotoxiques / cytostatiques,chimio;cytotoxique;cytostatique,Filière dangereuse spécifique (protocoles dédiés).,rouge_cyto
