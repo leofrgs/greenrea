@@ -72,14 +72,17 @@ function buildIndex(rows) {
 }
 
 function cosineSim(vecA, vecB) {
+  if (!vecA || !vecB || !vecA.map || !vecB.map) return 0;
   let sum = 0;
   const a = vecA.map, b = vecB.map;
   for (const [t, w] of a.entries()) {
     const v = b.get(t);
-    if (v) sum += w*v;
+    if (v) sum += w * v;
   }
-  return sum / (vecA.norm * vecB.norm);
+  const denom = (vecA.norm || 1) * (vecB.norm || 1);
+  return denom ? (sum / denom) : 0;
 }
+
 
 function makeQueryVector(qTokens, idf) {
   const tf = new Map();
@@ -169,13 +172,14 @@ function search(q) {
 
   // score = 0.7*cosineTFIDF + 0.3*trigramJaccard on hay
   const scored = rows.map(d => {
-    const cos = cosineSim(qVec, d._vec);
-    const tri = jaccard(qTri, d._tri);
-    // small bonus if exact word exists in name or aliases
-    const bonus = d.name.toLowerCase().includes(qNorm) || (d.aliases||'').toLowerCase().includes(qNorm) ? 0.1 : 0;
-    const score = 0.7*cos + 0.3*tri + bonus;
+    const cos = cosineSim(qVec, d._vec || { map: new Map(), norm: 1 });
+    const tri = jaccard(qTri, d._tri || new Set());
+    const aliasText = (d.aliases || '').toLowerCase();
+    const bonus = d.name.toLowerCase().includes(qNorm) || aliasText.includes(qNorm) ? 0.1 : 0;
+    const score = 0.7 * cos + 0.3 * tri + bonus;
     return { item: d, score };
-  }).sort((a,b)=> b.score - a.score);
+  }).sort((a, b) => b.score - a.score);
+
 
   // Optionally filter low scores
   const hideLow = $onlyKnown && $onlyKnown.checked;
