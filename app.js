@@ -108,15 +108,21 @@ async function loadAll() {
       fetch('wastes.csv').then(r => r.text()),
       fetch('bins.config.json').then(r => r.json())
     ]);
-    const rows = parseCSV(csvText);
+
+    // Parse CSV et attache les bacs
+    const rowsRaw = parseCSV(csvText);
     const binsById = {};
     for (const b of binsJson.bins) binsById[b.id] = b;
-    const withBins = attachBins(rows, binsById);
-    const index = buildIndex(withBins);
-    // store globally
-    window.__DATA__ = { rows: withBins, index, binsById };
+    const rowsWithBins = attachBins(rowsRaw, binsById);
+
+    // Construire l’index : renvoie docs enrichis (_vec, _tri…)
+    const index = buildIndex(rowsWithBins);
+
+    // Utiliser les docs enrichis comme rows (et pas rowsRaw !)
+    window.__DATA__ = { rows: index.docs, index, binsById };
+
     $empty.textContent = 'Commence à taper pour voir des suggestions.';
-    renderTop(withBins.slice(0, 5));
+    renderTop(index.docs.slice(0, 5));
   } catch (e) {
     console.error(e);
     $empty.textContent = 'Erreur de chargement des données.';
