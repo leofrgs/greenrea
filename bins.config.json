@@ -1,0 +1,39 @@
+{
+  "bins": [
+    {
+      "id": "dasri_jaune",
+      "label": "Jaune — DASRI",
+      "hex": "#fff7cc",
+      "text_hex": "#111111",
+      "notes": "Déchets d’Activités de Soins à Risques Infectieux."
+    },
+    {
+      "id": "boite_a_aiguilles",
+      "label": "Jaune — Boîte à aiguilles (DASRI)",
+      "hex": "#ffef99",
+      "text_hex": "#111111",
+      "notes": "Contenant rigide homologué. Ne pas recapuchonner."
+    },
+    {
+      "id": "rouge_cyto",
+      "label": "Rouge — Filière cytotoxiques/cytostatiques",
+      "hex": "#ffd6d6",
+      "text_hex": "#111111",
+      "notes": "Filière dangereuse spécifique (protocoles dédiés)."
+    },
+    {
+      "id": "bleu_pharma",
+      "label": "Bleu — Circuit pharmaceutique",
+      "hex": "#dbeafe",
+      "text_hex": "#111111",
+      "notes": "Retour pharmacie / filière médicamenteuse."
+    },
+    {
+      "id": "noir_omb",
+      "label": "Noir — Ordures ménagères/banales",
+      "hex": "#e5e7eb",
+      "text_hex": "#111111",
+      "notes": "Selon protocole local. Si souillé biologiquement → DASRI."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greenrea - Où jeter ? — Déchets médicaux</title>
+  <meta name="description" content="Rechercher un déchet médical et obtenir la couleur de la poubelle correspondante." />
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="wrap">
+      <h1>Où jeter ? — Déchets médicaux</h1>
+      <div class="searchbar">
+        <input id="q" type="search" placeholder="Ex. : sonde d’incubation, aiguille, compresses…" autofocus />
+      </div>
+      <div class="hint">Recherche avancée (sémantique + tolérance aux fautes). Tape et vois les résultats 👇</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="filters" class="filters" aria-label="Filtres">
+      <label class="filter">
+        <input type="checkbox" id="onlyKnown" />
+        <span>Masquer les résultats à faible score</span>
+      </label>
+    </section>
+
+    <div id="results"></div>
+    <div class="empty" id="empty">Chargement des données…</div>
+  </main>
+
+  <footer class="footer small">
+    <div class="wrap">Appli locale (PWA) — fonctionne hors-ligne après la première visite. Données depuis <code>wastes.csv</code>. Bacs et couleurs via <code>bins.config.json</code>.</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
